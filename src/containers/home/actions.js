@@ -1,9 +1,9 @@
 import {
-    HOME_GET_DATA_START,
-    HOME_GET_DATA_SUCCESS,
-    HOME_GET_DATA_FAILURE,
+  GET_LIST_USER_START,
+  GET_LIST_USER_SUCCESS,
+  GET_LIST_USER_FAILURE,
 } from './type';
-import { HTTP, API_URL } from '../../constants';
+import { REQUEST_METHODS, API_URL, request } from '../../api';
 
 /**
  * Handle action get data successfully.
@@ -12,9 +12,9 @@ import { HTTP, API_URL } from '../../constants';
  */
 function handleSuccess(data) {
   return {
-    type: HOME_GET_DATA_SUCCESS,
+    type: GET_LIST_USER_SUCCESS,
     payload: data,
-  }
+  };
 }
 /**
  * Handle action get data failure.
@@ -23,26 +23,28 @@ function handleSuccess(data) {
  */
 function handleFailure(error) {
   return {
-    type: HOME_GET_DATA_FAILURE,
+    type: GET_LIST_USER_FAILURE,
     error,
-  }
+  };
 }
 
-export function getData() {
-    return (dispatch) => {
-        const options = {
-            url: API_URL.GET_HOME_PAGE_DATA_URL,
-            method: HTTP.METHOD_GET,
-            handlers: {
-                success: handleSuccess,
-                failure: handleFailure,
-            }
-        };
-        dispatch({
-            type: HOME_GET_DATA_START,
-            [HTTP.HTTP_REQUEST]: {
-                options
-            }
-        });
+/**
+ * ActionCreators that return a function.
+ * @returns {Function} the function that will be implement by redux-thunk.
+ */
+export function getListUser(cancelPreviousRequest = false) {
+  return (dispatch) => {
+    const options = {
+      url: API_URL.LIST_USER_URL,
+      method: REQUEST_METHODS.GET,
     };
+    dispatch({ type: GET_LIST_USER_START });
+    request.doRequest(options, cancelPreviousRequest)
+      .then(data => {
+        dispatch(handleSuccess(data));
+      })
+      .catch(error => {
+        dispatch(handleFailure(error));
+      });
+  };
 }

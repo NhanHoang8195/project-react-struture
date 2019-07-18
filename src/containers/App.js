@@ -6,14 +6,14 @@ import Home from './home';
 import Admin from './admin';
 
 // All routes define here.
-const Root = ({store}) => (<Provider store={store}>
+const Root = ({ store }) => (<Provider store={store}>
   <Router>
-      <Route exact path="/" component={Home} />
-      <Route path={"/admin"} component={Admin} />
+    <Route exact path='/' component={Home} />
+    <Route path='/admin' component={Admin} />
   </Router>
 </Provider>);
 
 Root.propTypes = {
-    store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired
 };
 export default Root;
