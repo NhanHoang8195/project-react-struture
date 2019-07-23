@@ -37,7 +37,7 @@ function handleFailure(type, error) {
 export function getListUser() {
   return (dispatch) => {
     const options = {
-      url: API_URL.LIST_POST_URL,
+      url: API_URL.LIST_USER_URL,
       method: REQUEST_METHODS.GET,
     };
     dispatch({ type: GET_LIST_USER_START });
