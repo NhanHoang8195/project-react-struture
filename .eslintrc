@@ -25,6 +25,12 @@
     "keyword-spacing": 2,
     "comma-style": 2,
     "no-unused-vars": 2,
-    "no-warning-comments": 0
+    "no-warning-comments": 0,
+    "comma-dangle": [
+      2,
+      "always-multiline",
+      "error",
+      {"functions": "ignore"}
+    ]
   }
 }

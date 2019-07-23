@@ -10,18 +10,14 @@ function App(props) {
     props.actions.getListUser();
   }, [props.actions]);
 
-  function handleClick() {
-    props.actions.getListUser(true);
-  }
   if (isLoadingData && !data) {
     return (<div>Data is loading...</div>);
   }
   return (
     <div className='home-containers'>
       {data && <ul>
-        {data.map(dt => <li key={dt.id}>{dt.name}</li>)}
+        {data.map(dt => <li key={dt.id}>{dt.username}</li>)}
       </ul>}
-      <button onClick={handleClick} disabled={isLoadingData}>Refresh</button>
     </div>
   );
 }
