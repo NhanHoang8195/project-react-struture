@@ -25,7 +25,7 @@ function handleSuccess(type, data) {
  */
 function handleFailure(type, error) {
   return {
-    type: GET_LIST_USER_FAILURE,
+    type,
     error,
   };
 }

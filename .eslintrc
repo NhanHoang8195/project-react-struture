@@ -1,7 +1,8 @@
 {
   "extends": ["eslint:recommended", "react-app"],
   "plugins": [
-    "react-hooks"
+    "react-hooks",
+    "react"
   ],
   "rules": {
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
@@ -31,6 +32,7 @@
       "always-multiline",
       "error",
       {"functions": "ignore"}
-    ]
+    ],
+    "react/prop-types": [2]
   }
 }

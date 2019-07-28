@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from './actions';
 import './styles.scss';
 
-function App(props) {
+function Homepage(props) {
   const { data, isLoadingData } = props;
   useEffect(() => {
     props.actions.getListUser();
@@ -28,5 +29,12 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({ ...actions }, dispatch),
 });
+Homepage.propTypes = {
+  actions: PropTypes.shape({
+    getListUser: PropTypes.func,
+  }),
+  data: PropTypes.arrayOf(PropTypes.shape({})),
+  isLoadingData: PropTypes.bool,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
